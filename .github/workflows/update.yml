@@ -1,0 +1,39 @@
+# Keeps the cask in step with Iguana's latest release. Every release of Iguana publishes its
+# cask (iguana.rb) with the right version and checksum; this fetches it and commits it here.
+# It uses only this repository's own token, so no credential is shared between repositories.
+name: Update cask
+
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Fetch the cask of the latest release
+        run: |
+          curl -fsSL -o iguana.rb.new https://github.com/Chandram-Dutta/iguana/releases/latest/download/iguana.rb
+          # Only a file that is a cask named iguana, with a version and a checksum, replaces the old one.
+          ruby -c iguana.rb.new
+          grep -q '^cask "iguana" do$' iguana.rb.new
+          grep -Eq '^  version "[0-9][0-9A-Za-z.]*"$' iguana.rb.new
+          grep -Eq '^  sha256 "[0-9a-f]{64}"$' iguana.rb.new
+          mv iguana.rb.new Casks/iguana.rb
+      - name: Commit it if it changed
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "The cask is up to date."
+            exit 0
+          fi
+          VERSION="$(sed -nE 's/^  version "(.*)"$/\1/p' Casks/iguana.rb)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Casks/iguana.rb
+          git commit -m "iguana $VERSION"
+          git push
