@@ -5,14 +5,14 @@ cask "iguana" do
   url "https://github.com/Chandram-Dutta/iguana/releases/download/v#{version}/Iguana-#{version}.zip"
   name "Iguana"
   desc "Tiling window manager that works inside native desktops"
-  homepage "https://iguana.onlychan.xyz"
+  homepage "https://iguana.onlychan.xyz/"
 
   livecheck do
     url :url
     strategy :github_latest
   end
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "Iguana.app"
   # The app's binary is also the command line tool.

@@ -4,10 +4,14 @@
 native desktops and never hides a window.
 
 ```sh
-brew install --cask chandram-dutta/tap/iguana
+brew tap chandram-dutta/tap
+brew trust chandram-dutta/tap
+brew install --cask iguana
 ```
 
-That installs Iguana.app and puts the `iguana` command on your PATH. To update later:
+That installs Iguana.app and puts the `iguana` command on your PATH. `brew trust` is how
+Homebrew is told that a tap outside its own is one you mean to use; older versions of
+Homebrew do not have the command and do not need it. To update later:
 
 ```sh
 brew upgrade --cask iguana
