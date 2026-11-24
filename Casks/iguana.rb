@@ -1,6 +1,6 @@
 cask "iguana" do
-  version "0.1.2"
-  sha256 "142bfb12482e1728419f3259f24931677c69baf16fed4f26daa6cb04466e3cb2"
+  version "0.2.0"
+  sha256 "1058c14f2badc129ef2a0125c12acbee52817d87fe153f10c1877b5e7083d244"
 
   url "https://github.com/Chandram-Dutta/iguana/releases/download/v#{version}/Iguana-#{version}.zip"
   name "Iguana"
