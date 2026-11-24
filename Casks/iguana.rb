@@ -1,10 +1,10 @@
 cask "iguana" do
-  version "0.1.1"
-  sha256 "bcebf0657f570ef4ae689b964245bc19cb09a9bfc4a106f48e1b477e51101687"
+  version "0.1.2"
+  sha256 "142bfb12482e1728419f3259f24931677c69baf16fed4f26daa6cb04466e3cb2"
 
   url "https://github.com/Chandram-Dutta/iguana/releases/download/v#{version}/Iguana-#{version}.zip"
   name "Iguana"
-  desc "Tiling window manager that works inside native desktops"
+  desc "Keyboard-driven tiling window manager"
   homepage "https://iguana.onlychan.xyz/"
 
   livecheck do
