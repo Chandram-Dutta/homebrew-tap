@@ -1,6 +1,6 @@
 cask "iguana" do
-  version "0.3.0"
-  sha256 "24de433cc9cedcc9ae3b5703d2638e833a175b5b811f465b04be4d8b826ba4ce"
+  version "0.4.0"
+  sha256 "92a252b16e10803c929c377134166e673b559c2f39ec2a7612c99a21753e76fe"
 
   url "https://github.com/Chandram-Dutta/iguana/releases/download/v#{version}/Iguana-#{version}.zip"
   name "Iguana"
@@ -12,6 +12,8 @@ cask "iguana" do
     strategy :github_latest
   end
 
+  # Iguana installs its own updates, so a plain `brew upgrade` leaves it to the app.
+  auto_updates true
   depends_on macos: :sonoma
 
   app "Iguana.app"
